@@ -13,3 +13,6 @@ def characters():
 	2:"John"
 	}
 	return jsonify(characters)
+
+if __name__ == '__main__':
+	app.run()
