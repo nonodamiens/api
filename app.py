@@ -5,6 +5,8 @@ app = Flask(__name__)
 
 db = SQLAlchemy()
 
+from models import hat
+
 @app.route("/")
 def hello_orld():
 	return "Hello world !"
