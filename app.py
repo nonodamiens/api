@@ -5,10 +5,10 @@ app = Flask(__name__)
 
 db = SQLAlchemy()
 
-from models import hat
+from models import Hat
 
 @app.route("/")
-def hello_orld():
+def hello_world():
 	return "Hello world !"
 
 @app.route("/characters/")
