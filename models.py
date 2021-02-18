@@ -2,12 +2,12 @@ from app import db
 import enum
 
 class colors(enum.Enum):
-	yellow = "YELLOW"
-	purple = "PURPLE"
-	green = "GREEN"
+	YELLOW = "YELLOW"
+	PURPLE = "PURPLE"
+	GREEN = "GREEN"
 
 class Hat(db.Model):
-    __tablename__ = 'hat'
+    __tablename__ = 'hats'
 
     id = db.Column(db.Integer, primary_key=True)
     color = db.Column(db.Enum(colors))
