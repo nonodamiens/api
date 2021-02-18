@@ -1,9 +1,22 @@
+import os
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
-db = SQLAlchemy()
+USER = "postgres"
+PASSWORD = os.environ.get("POSTGRES_PASS")
+URL = "localhost"
+DATABASE = "characters"
+
+if not PASSWORD:
+    raise ValueError("No password set for database connection")
+
+DB_URL = 'postgresql+psycopg2://{user}:{pw}@{url}/{db}'.format(user=USER, pw=PASSWORD, url=URL, db=DATABASE)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
+
+db = SQLAlchemy(app)
 
 from models import Hat
 
@@ -19,5 +32,9 @@ def characters():
 	}
 	return jsonify(characters)
 
+@app.route("/hats/")
+def hats():
+	return "API response to set"
+
 if __name__ == '__main__':
-	app.run()
+	app.run(debug=True)
