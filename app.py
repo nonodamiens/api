@@ -1,13 +1,14 @@
 import os
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
+import psycopg2
 
 app = Flask(__name__)
 
 USER = "postgres"
 PASSWORD = os.environ.get("POSTGRES_PASS")
 URL = "localhost"
-DATABASE = "characters"
+DATABASE = "hat"
 
 if not PASSWORD:
     raise ValueError("No password set for database connection")
@@ -34,6 +35,8 @@ def characters():
 
 @app.route("/hats/")
 def hats():
+	hats_list = db.session.query(Hat).all()
+	print(hats_list)
 	return "API response to set"
 
 if __name__ == '__main__':

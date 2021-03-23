@@ -7,7 +7,7 @@ class colors(enum.Enum):
 	GREEN = "GREEN"
 
 class Hat(db.Model):
-    __tablename__ = 'hats'
+    __tablename__ = 'hat'
 
     id = db.Column(db.Integer, primary_key=True)
     color = db.Column(db.Enum(colors))
