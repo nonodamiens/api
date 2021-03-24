@@ -34,10 +34,14 @@ def characters():
 	return jsonify(characters)
 
 @app.route("/hats/")
-def hats():
-	hats_list = db.session.query(Hat).all()
-	print(hats_list)
-	return "API response to set"
+def get_all_hats():
+	try:
+		hats = db.session.query(Hat).all()
+		result = jsonify([{"id":hat.id, "color":hat.color.value} for hat in hats])
+		return result
+	except Exception as e:
+		print(e)
+		return False
 
 if __name__ == '__main__':
 	app.run(debug=True)
